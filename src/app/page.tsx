@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { supabase } from "@/lib/supabaseClient";
 
 export default function Home() {
   const [formData, setFormData] = useState({
@@ -9,15 +10,37 @@ export default function Home() {
     age: "",
     phoneNumber: "",
   });
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    alert("Form Submitted Successfully!");
-    console.log(formData);
+    setLoading(true);
+    setMessage("");
+
+    const { error } = await supabase
+      .from("users")
+      .insert([
+        {
+          name: formData.name,
+          designation: formData.designation,
+          age: parseInt(formData.age),
+          phone_number: formData.phoneNumber,
+        },
+      ]);
+
+    if (error) {
+      console.error("Error inserting data:", error.message);
+      setMessage("Error submitting form: " + error.message);
+    } else {
+      setMessage("Form Submitted Successfully!");
+      setFormData({ name: "", designation: "", age: "", phoneNumber: "" });
+    }
+    setLoading(false);
   };
 
   return (
@@ -98,11 +121,19 @@ export default function Home() {
           <div>
             <button
               type="submit"
-              className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-semibold rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 shadow-md transition-all duration-200 ease-in-out transform hover:-translate-y-0.5"
+              disabled={loading}
+              className={`group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-semibold rounded-lg text-white shadow-md transition-all duration-200 ease-in-out ${
+                loading ? "bg-blue-400 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700 transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              }`}
             >
-              Submit Information
+              {loading ? "Submitting..." : "Submit Information"}
             </button>
           </div>
+          {message && (
+            <div className={`mt-4 p-4 text-sm rounded-lg ${message.includes("Error") ? "bg-red-50 text-red-800" : "bg-green-50 text-green-800"}`}>
+              {message}
+            </div>
+          )}
         </form>
       </div>
     </div>
