@@ -1,0 +1,6 @@
+# local clones of the public NSE-file archives (re-created by fetch_data.py)
+.cache/
+# raw files downloaded with --source nse
+data/raw_nse/
+__pycache__/
+.pytest_cache/

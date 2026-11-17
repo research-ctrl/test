@@ -1,0 +1,25 @@
+{
+  "description": "NSE Capital Market (CM) trading holidays and special sessions for calendar year 2026.",
+  "source": "NSE holiday master API, https://www.nseindia.com/api/holiday-master?type=trading (segment CM), as cached on 2026-11-17 in data/aux/nse_trading_holidays.json of the public archive github.com/Chaudharyrohit2506/bhavcopy at commit d321094580e9e4cc1ecdd831e3b2590b801dbf71. Human-readable list: https://www.nseindia.com/resources/exchange-communication-holidays",
+  "holidays": [
+    "2026-01-15",
+    "2026-01-26",
+    "2026-03-03",
+    "2026-03-26",
+    "2026-03-31",
+    "2026-04-03",
+    "2026-04-14",
+    "2026-05-01",
+    "2026-05-28",
+    "2026-06-26",
+    "2026-09-14",
+    "2026-10-02",
+    "2026-10-20",
+    "2026-11-10",
+    "2026-11-24",
+    "2026-12-25"
+  ],
+  "special_sessions": {
+    "2026-11-08": "Diwali Muhurat trading (Sunday, ~1-hour special session)"
+  }
+}
