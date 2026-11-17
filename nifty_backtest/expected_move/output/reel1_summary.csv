@@ -1,0 +1,6 @@
+label,actual,ci_low,ci_high
+"VIX range, weekly expiry (all days)",73.99,70.74,76.95
+"VIX range, 2 days to weekly expiry",73.46,68.39,77.97
+"VIX range, monthly expiry",73.58,67.62,79.14
+"Straddle x 1.25, weekly (2026 only)",56.72,37.50,76.92
+VIX range never left all week,55.23,51.66,58.60

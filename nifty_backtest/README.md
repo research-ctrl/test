@@ -12,6 +12,8 @@
 | Data | NSE's official daily index closing reports (`ind_close_all_DDMMYYYY.csv`): **Nifty 50 cash index** OHLC and **India VIX** |
 | Parameters | Exactly as specified: ATR 14 (Wilder), weights 0.50 / 0.50, sqrt(252). Nothing was tuned |
 
+Follow-up study: two option-writing "expected move" reels (VIX range, straddle × 1.25, VIX probability calculator) tested on 405 weekly expiries, 2019–2026: [`expected_move/README.md`](expected_move/README.md).
+
 ---
 
 ## Executive summary (plain English)
